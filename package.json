@@ -2,9 +2,12 @@
   "name": "g-server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon -e ts --exec 'npm run build && npm start'",
+    "start":  "node dist",
+    "build": "rimraf dist && tsc"
   },
   "repository": {
     "type": "git",
@@ -13,9 +16,21 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
   "bugs": {
     "url": "https://github.com/shaina-pachica/G-Audit-server/issues"
   },
-  "homepage": "https://github.com/shaina-pachica/G-Audit-server#readme"
+  "homepage": "https://github.com/shaina-pachica/G-Audit-server#readme",
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "nodemon": "^3.1.11",
+    "rimraf": "^6.1.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@dotenvx/dotenvx": "^1.51.1",
+    "cors": "^2.8.5",
+    "express": "^5.2.1",
+    "helmet": "^8.1.0"
+  }
 }
