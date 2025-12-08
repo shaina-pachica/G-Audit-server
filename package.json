@@ -5,9 +5,16 @@
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "generate:migration": "npx sequelize-cli migration:generate --name",
+    "generate:seed": "npx sequelize-cli seed:generate --name",
+    "migrate": "npx @dotenvx/dotenvx run -f ./.env -- sequelize-cli db:migrate",
+    "migrate:undo": "npx @dotenvx/dotenvx run -f ./.env -- sequelize-cli db:migrate:undo:all",
+    "seed": "npx @dotenvx/dotenvx run -f ./.env -- sequelize-cli db:seed:all",
+    "seed:undo": "npx @dotenvx/dotenvx run -f ./.env -- sequelize-cli db:seed:undo:all",
+    "start": "npm run migrate && node dist",
+    "build": "rimraf dist && tsc",
     "dev": "nodemon -e ts --exec 'npm run build && npm start'",
-    "start":  "node dist",
-    "build": "rimraf dist && tsc"
+    "dev:w": "nodemon -e ts --exec \"npm run build && npm start\""
   },
   "repository": {
     "type": "git",
@@ -24,13 +31,17 @@
     "@types/express": "^5.0.6",
     "nodemon": "^3.1.11",
     "rimraf": "^6.1.2",
+    "sequelize-cli": "^6.6.3",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.9.3"
   },
   "dependencies": {
     "@dotenvx/dotenvx": "^1.51.1",
+    "@sequelize/postgres": "^7.0.0-alpha.47",
     "cors": "^2.8.5",
     "express": "^5.2.1",
-    "helmet": "^8.1.0"
+    "helmet": "^8.1.0",
+    "sequelize": "^6.37.7",
+    "sequelize-typescript": "^2.1.6"
   }
 }
