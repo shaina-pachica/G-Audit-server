@@ -1,8 +1,8 @@
 import { BelongsTo, Column, ForeignKey, Model, PrimaryKey, Table } from "sequelize-typescript";
 import { User } from "./User.model";
 
-@Table({ tableName: "Transaction", freezeTableName: true })
-export class UserRole extends Model {
+@Table({ tableName: "Transactions", freezeTableName: true })
+export class Transaction extends Model {
   @PrimaryKey
   @Column({ autoIncrement: true })
   declare id: number

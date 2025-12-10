@@ -2,7 +2,7 @@ import { BelongsToMany, Column, CreatedAt, Model, PrimaryKey, Table, UpdatedAt }
 import { User } from "./User.model";
 import { UserRole } from "./UserRole.model";
 
-@Table({ tableName: "Role", freezeTableName: true })
+@Table({ tableName: "Roles", freezeTableName: true })
 export class Role extends Model {
   @PrimaryKey
   @Column({ autoIncrement: true })
@@ -10,12 +10,6 @@ export class Role extends Model {
 
   @Column
   declare name: string
-
-  @CreatedAt
-  declare createdAt: Date;
-
-  @UpdatedAt
-  declare updatedAt: Date;
 
   @BelongsToMany(() => User, () => UserRole)
   declare users: User[]

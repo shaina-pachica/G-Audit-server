@@ -2,7 +2,7 @@ import { Column, ForeignKey, Model, PrimaryKey, Table } from "sequelize-typescri
 import { User } from "./User.model";
 import { Role } from "./Role.model";
 
-@Table({ tableName: "UserRole", freezeTableName: true })
+@Table({ tableName: "UserRoles", freezeTableName: true })
 export class UserRole extends Model {
   @PrimaryKey
   @Column({ autoIncrement: true })

@@ -28,7 +28,9 @@
   },
   "homepage": "https://github.com/shaina-pachica/G-Audit-server#readme",
   "devDependencies": {
+    "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
+    "@types/jsonwebtoken": "^9.0.10",
     "nodemon": "^3.1.11",
     "rimraf": "^6.1.2",
     "sequelize-cli": "^6.6.3",
@@ -38,9 +40,11 @@
   "dependencies": {
     "@dotenvx/dotenvx": "^1.51.1",
     "@sequelize/postgres": "^7.0.0-alpha.47",
+    "argon2": "^0.44.0",
     "cors": "^2.8.5",
     "express": "^5.2.1",
     "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.3",
     "sequelize": "^6.37.7",
     "sequelize-typescript": "^2.1.6"
   }
