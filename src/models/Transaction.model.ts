@@ -18,7 +18,7 @@ export class Transaction extends Model {
   declare description: string
 
   @Column
-  declare reference: number
+  declare reference: string
 
   @Column
   declare amount: number

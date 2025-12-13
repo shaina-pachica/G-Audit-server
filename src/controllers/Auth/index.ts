@@ -39,7 +39,7 @@ router.post("/login", async (req: Request, res: Response) => {
   const refresh_token = signRefreshToken({ username, roles: roles })
   storeRefreshToken(refresh_token, res)
 
-  return res.status(200).json({ accessToken: access_token })
+  return res.status(200).json({ accessToken: access_token, roles: roles })
 })
 
 router.post("/refresh", async (req: Request, res: Response) => {

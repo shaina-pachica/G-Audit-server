@@ -25,7 +25,7 @@ module.exports = {
         type: Sequelize.STRING,
       },
       reference: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
       },
       amount: {
         type: Sequelize.INTEGER,
@@ -34,11 +34,11 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       createdAt: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.DATE
       },
       updatedAt: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.DATE
       }
     });
