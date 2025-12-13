@@ -3,8 +3,8 @@ import { Request, Response, NextFunction } from "express";
 
 interface AuthRequest extends Request {
   user?: {
-    id: string;
-    role: ("Employee" | "Owner")[];
+    username: string;
+    roles: ("Employee" | "Owner")[];
   };
 }
 export const allowRole = (
@@ -12,7 +12,7 @@ export const allowRole = (
 ) => {
   return (req: AuthRequest, res: Response, next: NextFunction) => {
     try {
-      if (!req.user || !role.some((r) => req.user!.role.includes(r))) {
+      if (!req.user || !role.some((r) => req.user!.roles.includes(r))) {
         return res
           .status(403)
           .json({ message: "Forbidden: Insufficient role" });

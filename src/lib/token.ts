@@ -3,6 +3,7 @@ import { Response } from "express"
 
 type JWTPayload = {
   username: string
+  roles: ("Owner" | "Employee" | undefined)[]
 }
 
 const ACCESS_EXPIRES = "5m"

@@ -3,6 +3,7 @@ import { User } from "../../models/User.model";
 import { Role } from "../../models/Role.model";
 import { comparePassword } from "../../lib/hash";
 import { removeRefreshToken, signAccessToken, signRefreshToken, storeRefreshToken, verifyRefreshToken } from "../../lib/token";
+import { extractRoles } from "../../lib/extract_roles";
 
 const router = express.Router()
 
@@ -18,13 +19,15 @@ router.post("/login", async (req: Request, res: Response) => {
     },
     include: {
       model: Role,
+      attributes: ['name'],
       through: { attributes: [] }
     },
   })
-
   if (!user) {
     return res.status(404).json({ error: "User not found" })
   }
+
+  const roles = extractRoles(user.roles)
 
   const isMatchPw = await comparePassword(password, user?.password)
 
@@ -32,8 +35,8 @@ router.post("/login", async (req: Request, res: Response) => {
     return res.status(401).json({ error: "Invalid credentials" })
   }
 
-  const access_token = signAccessToken({ username })
-  const refresh_token = signRefreshToken({ username })
+  const access_token = signAccessToken({ username, roles: roles })
+  const refresh_token = signRefreshToken({ username, roles: roles })
   storeRefreshToken(refresh_token, res)
 
   return res.status(200).json({ accessToken: access_token })
@@ -55,8 +58,8 @@ router.post("/refresh", async (req: Request, res: Response) => {
 
     removeRefreshToken(res)
 
-    const new_access_token = signAccessToken({ username: payload.username })
-    const new_refresh_token = signRefreshToken({ username: payload.username })
+    const new_access_token = signAccessToken({ username: payload.username, roles: payload.roles })
+    const new_refresh_token = signRefreshToken({ username: payload.username, roles: payload.roles })
     storeRefreshToken(new_refresh_token, res)
 
     res.json({
