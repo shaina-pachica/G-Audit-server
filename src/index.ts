@@ -1,4 +1,5 @@
 import express from "express"
+import cookieParser from "cookie-parser";
 import helmet from "helmet"
 import "dotenv/config";
 import corsMiddleware from "./middleware/cors";
@@ -11,6 +12,7 @@ const _ = SequelizeDb.getDbInstance()
 const app = express()
 
 app.use(express.json())
+app.use(cookieParser())
 app.use(helmet())
 app.use(corsMiddleware)
 app.use("/api/v1/", insecureRoutes, secureRoutes)
