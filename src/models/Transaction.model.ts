@@ -8,9 +8,6 @@ export class Transaction extends Model {
   @Column({ autoIncrement: true })
   declare id: number
 
-  @ForeignKey(() => User)
-  @Column
-  declare user_id: number
 
   @ForeignKey(() => Statistics)
   @Column
@@ -28,8 +25,6 @@ export class Transaction extends Model {
   @Column
   declare balance: number
 
-  @BelongsTo(() => User)
-  declare user: User
 
   @BelongsTo(() => Statistics)
   declare timeframe: Statistics

@@ -10,7 +10,16 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       date: {
-        type: Sequelize.DATE,
+        type: Sequelize.DATEONLY,
+      },
+      user_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: "Users",
+          key: "id"
+        },
+        onDelete: "cascade",
+        onUpdate: "cascade",
       },
       starting_balance: {
         type: Sequelize.FLOAT
