@@ -18,8 +18,14 @@ module.exports = {
         onDelete: "cascade",
         onUpdate: "cascade",
       },
-      date: {
-        type: Sequelize.DATE,
+      stat_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: "Statistics",
+          key: "id"
+        },
+        onDelete: "cascade",
+        onUpdate: "cascade",
       },
       description: {
         type: Sequelize.STRING,

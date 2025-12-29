@@ -1,5 +1,6 @@
 import { BelongsTo, Column, ForeignKey, Model, PrimaryKey, Table } from "sequelize-typescript";
 import { User } from "./User.model";
+import { Statistics } from "./Statistics.model";
 
 @Table({ tableName: "Transactions", freezeTableName: true })
 export class Transaction extends Model {
@@ -11,8 +12,9 @@ export class Transaction extends Model {
   @Column
   declare user_id: number
 
+  @ForeignKey(() => Statistics)
   @Column
-  declare date: Date
+  declare stat_id: number
 
   @Column
   declare description: string
@@ -28,4 +30,7 @@ export class Transaction extends Model {
 
   @BelongsTo(() => User)
   declare user: User
+
+  @BelongsTo(() => Statistics)
+  declare timeframe: Statistics
 }

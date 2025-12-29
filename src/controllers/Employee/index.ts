@@ -30,6 +30,15 @@ router.get("", async (_: Request, res: Response) => {
   }
 })
 
+router.get("/:id/statistics", async (_: Request, res: Response) => {
+  try {
+
+  } catch (error) {
+    console.error("Error fetching users:", error)
+    return res.status(500).json({ error: "Internal server error" })
+  }
+})
+
 router.get("/:id/transactions", async (req: Request, res: Response) => {
   const { id } = req.params
   try {
